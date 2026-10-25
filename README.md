@@ -1,4 +1,4 @@
-# 🏏 Hawk-Eye DRS: AI Cricket Ball Tracking & LBW Trajectory Prediction
+<img width="848" height="384" alt="demo1_clean_f25" src="https://github.com/user-attachments/assets/4af51bdd-b3fc-47a2-ad3e-1b79f87b073b" /># 🏏 Hawk-Eye DRS: AI Cricket Ball Tracking & LBW Trajectory Prediction
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-5C3EE8.svg?logo=opencv&logoColor=white)](https://opencv.org/)
@@ -15,7 +15,7 @@
 
 | Ball Tracking & Dynamic Trajectory Arc | Stump Intersection & Collision Verdict |
 | :---: | :---: |
-| ![Ball Tracking Trajectory](outputs/demo1_annotated_f25.jpg) | ![Stump Intersection](outputs/demo_frame_hit.jpg) |
+| ![Ball Tracking Trajectory](outputs/demo1_clean_f25.jpg) | ![Stump Intersection](outputs/demo_frame_hit.jpg) |
 | *Real-time ball detection with glowing FIFO historical trajectory trail.* | *Ballistic parabolic projection intersecting striker's wicket zone.* |
 
 ### Delivery Sequence & Pitch Progression Strip
@@ -199,40 +199,7 @@ Fitting trajectories exclusively to points where $t > t_{\text{bounce}}$ guarant
 
 ---
 
-## 💡 Technical Interview & Viva Voce Q&A
 
-<details>
-<summary><strong>Q1: Why is multi-frame tracking required instead of relying solely on YOLO detections?</strong></summary>
-
-> In high-speed sports broadcasting, cricket deliveries travel at 120–150 km/h, causing extreme motion blur. Isolated detectors produce intermittent false negatives (occluded ball) and false positives (e.g. white wristbands, shoes, bowler hand). Temporal tracking with Euclidean distance thresholds guarantees motion continuity, eliminates noise leaps, and provides historical coordinates for mathematical curve fitting.
-</details>
-
-<details>
-<summary><strong>Q2: How does this 2D prototype differ from broadcast Hawk-Eye DRS?</strong></summary>
-
-> Broadcast Hawk-Eye employs 4 to 6 synchronized high-speed cameras (340 FPS) placed around the stadium calibrated via stereo epipolar geometry, reconstructing exact metric 3D $(X, Y, Z)$ spatial coordinates. This 2D monocular prototype projects coordinates directly in image space, serving as an accessible simulation of the tracking and trajectory extrapolation concepts.
-</details>
-
-<details>
-<summary><strong>Q3: How does the system prevent stationary objects from corrupting the flight path?</strong></summary>
-
-> The algorithm computes inter-frame displacement:
-> $$d = \sqrt{(x_t - x_{t-1})^2 + (y_t - y_{t-1})^2}$$
-> Candidates with $d < 1.8\text{ px}$ over consecutive frames are rejected as stationary background noise (such as the non-striker umpire's hat or pitch marks).
-</details>
-
----
-
-## 💼 Resume Description (Ready to Copy-Paste)
-
-> **Cricket Vision DRS: Automated Ball Tracking & LBW Trajectory Prediction**  
-> *Python, OpenCV, YOLO / Roboflow API, NumPy, Kinematics & Computer Vision*  
-> - Designed an automated Decision Review System (DRS) pipeline in Python, achieving sub-second cricket ball detection and trajectory projection on broadcast footage.
-> - Formulated a bounce-aware quadratic polynomial extrapolation engine ($y = ax^2 + bx + c$) modeling gravitational ballistics to simulate LBW stump-collision assessments.
-> - Overcame extreme motion blur and false positives by engineering a hybrid temporal pipeline combining YOLO deep learning, frame-differencing motion fallback, and Euclidean velocity gating.
-> - Built an interactive telemetry HUD with alpha-blended overlay, dynamic trajectory trails, and custom CLI supporting configurable wicket ROIs and frame-stride sampling.
-
----
 
 ## 📜 License
 This project is open-source under the [MIT License](LICENSE).
